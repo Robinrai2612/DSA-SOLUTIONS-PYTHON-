@@ -1,0 +1,15 @@
+class Solution:
+    def fillCups(self, amount: List[int]) -> int:
+        amount.sort()
+        steps = 0
+        while amount[2] != 0:
+            if amount[0] != 0:
+                steps += 1
+                amount[0] -= 1
+                amount[2] -= 1
+            else:
+                steps += (amount[1]+abs(amount[1]-amount[2]))
+                amount[1],amount[2] = 0,0
+            amount.sort()
+        return steps 
+        
