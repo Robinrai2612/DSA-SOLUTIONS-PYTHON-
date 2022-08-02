@@ -1,0 +1,6 @@
+        arr = []
+        for row in matrix:
+            for col in row:
+                arr.append(col)
+        arr.sort()
+        return arr[k-1]
