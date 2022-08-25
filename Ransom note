@@ -1,1 +1,19 @@
+#  Method 1
 
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+
+        rm = collections.Counter(ransomNote)
+        mg = collections.Counter(magazine)
+
+        for k, v in rm.items():
+            if k not in mg or mg[k] < v:
+                return False
+
+        return True
+
+# Method 2
+
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        return not Counter(ransomNote) - Counter(magazine)
