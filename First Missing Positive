@@ -1,1 +1,50 @@
+# Method 1
 
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+       # * edge cases
+        if 1 not in nums:
+            return 1
+        high = max(nums)
+        low = min(nums)
+
+        if high < 1:
+            return 1
+        if low > 1:
+            return 1
+        if high == 1:
+            return 2
+
+        # * main logic
+
+        n = len(nums)
+        for i in range(n):
+            if nums[i] <= 0 or nums[i] > n:
+                nums[i] = n+1
+        for i in range(n):
+            temp = abs(nums[i]) - 1
+            if temp < n and nums[temp] > 0:
+                nums[temp] *= -1
+
+        for i in range(n):
+            if nums[i] > 0:
+                return i+1
+
+        else:
+            return n+1
+        
+class Solution:
+    def firstMissingPositive(self, nums: List[int]) -> int:
+        
+        dict={}
+        
+        for i in nums:
+            if i>0:
+                dict[i]=1
+        i=1
+        while True:
+            a=dict.get(i,0)
+            if a==0:
+                return i
+            i+=1
+        
