@@ -33,6 +33,9 @@ class Solution:
         else:
             return n+1
         
+        
+ # Method 2
+ 
 class Solution:
     def firstMissingPositive(self, nums: List[int]) -> int:
         
