@@ -1,0 +1,32 @@
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        a=0
+        b=0
+        temps=''
+        tempg=''
+        for j in range(len(secret)):
+            if secret[j] == guess[j]:
+                a+=1
+            else:
+                temps+=secret[j]
+                tempg+=guess[j]
+				
+		#iterate both strings to find correct digits, which is bulls. Add all other digits into a dictionary and count the number of them. 
+		
+        dic={}
+        for ele in temps:
+            if dic.get(ele) == None:
+                dic[ele]=1
+            else:
+                dic[ele]+=1
+				
+		#For all bulls, remove them from the dictionary to aviod duplicate counting.
+        for elem in tempg:
+            if dic.get(elem) and dic[elem]>0:
+                dic[elem]-=1 
+                b+=1
+		
+		#If all digits appear in both dictionaries, we know they must be in the wrong place. So those digits will be Cows, add up and return. 
+        return str(a)+'A'+str(b)+'B'
+		#Put them into one string and return it.
+        
