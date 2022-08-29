@@ -30,3 +30,19 @@ class Solution:
         return str(a)+'A'+str(b)+'B'
 		#Put them into one string and return it.
         
+# Method 2
+
+class Solution:
+    def getHint(self, secret: str, guess: str) -> str:
+        x = 0
+        y = 0
+        s=collections.Counter(secret)
+        g=collections.Counter(guess)
+        for i in s:
+            if i in g:
+                y+=min(s[i],g[i])
+        
+        for i in range(len(guess)):
+            if(secret[i]==guess[i]):
+                x+=1
+        return ("{0}A{1}B".format(x,y-x))
