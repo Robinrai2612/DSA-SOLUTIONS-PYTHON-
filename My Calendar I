@@ -1,0 +1,17 @@
+class MyCalendar:
+
+    def __init__(self):
+        self.start_time = []
+        self.end_time = []
+        
+    def book(self, start: int, end: int) -> bool:
+        for i in range(len(self.start_time)) : 
+            if ((start >= self.start_time[i]) and (start < self.end_time[i])) : 
+                return False 
+            elif ((start < self.start_time[i]) and (end >= self.end_time[i])) : 
+                    return False
+            elif ((start < self.start_time[i]) and (self.start_time[i] < end <= self.end_time[i])) : 
+                    return False
+        self.start_time.append(start)
+        self.end_time.append(end)
+        return True
