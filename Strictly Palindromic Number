@@ -1,0 +1,6 @@
+class Solution:
+    def isStrictlyPalindromic(self, n: int) -> bool:
+        ans=str(bin(n))
+        if(ans==ans[::-1]):
+            return True
+        return False
