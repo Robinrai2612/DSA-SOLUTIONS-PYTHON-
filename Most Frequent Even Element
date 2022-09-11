@@ -1,1 +1,11 @@
-
+Cc = collections.Counter(nums)
+mfee=-1
+Max=0
+for i in Cc.keys():
+if Cc[i]==Max and i%2==0:
+if i<mfee:
+mfee=i
+if Cc[i]>Max and i%2==0:
+Max=Cc[i]
+mfee=i
+return mfee
