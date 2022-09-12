@@ -1,1 +1,18 @@
-
+class Solution:
+    def bagOfTokensScore(self, tokens: List[int], power: int) -> int:
+        initial_score = 0
+        
+        while len(tokens) > 0:
+            print(power)
+            token = min(tokens)
+            tokens.remove(token)
+            if power >= token:
+                power -= token
+                initial_score += 1
+            elif power < token and initial_score > 0 and len(tokens) > 1:
+                tokens.append(token)
+                token = max(tokens)
+                tokens.remove(token)
+                power += token
+                initial_score -= 1
+        return initial_score
