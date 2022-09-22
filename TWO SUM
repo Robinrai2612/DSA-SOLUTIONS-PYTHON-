@@ -1,7 +1,7 @@
-index_mappings = {}
-        for idx, num in enumerate(nums):
-            other_val = target - num
-            if other_val in index_mappings:
-                return [index_mappings[other_val], idx]
+prevMap= {}
+        for i, num in enumerate(nums):
+            diff = target - num
+            if diff in prevMap :
+                return [prevMap[diff], i]
 
-            index_mappings[num] = idx
+            prevMap[num] = i
