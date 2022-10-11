@@ -1,0 +1,27 @@
+class Solution:
+    def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
+        numerator = coordinates[1][1]- coordinates[0][1]
+        denominator = coordinates[1][0]-coordinates[0][0]
+        
+        if  denominator != 0:
+            slope = numerator/denominator
+        
+            for r in range(2,len(coordinates)): # O(n)
+                nextNumerator = coordinates[r][1]-coordinates[0][1]
+                nextDenominator = coordinates[r][0]-coordinates[0][0]
+                
+                if nextDenominator == 0:
+                    return False
+                
+                nextSlope = nextNumerator/nextDenominator
+            
+                if nextSlope != slope:
+                    return False
+            return True
+        else:
+            for r in range(2, len(coordinates)): # O(n)
+                nextDenominator = coordinates[r][0]-coordinates[0][0]
+                
+                if nextDenominator != 0:
+                    return False
+            return True
