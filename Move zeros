@@ -1,0 +1,9 @@
+class Solution:
+    def moveZeroes(self, nums: List[int]) -> None:
+        left_pointer=0
+        for right_pointer in range(len(nums)):
+            if nums[right_pointer]:
+                nums[left_pointer],nums[right_pointer]=nums[right_pointer],nums[left_pointer]
+                left_pointer+=1
+        return nums
+                
