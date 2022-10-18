@@ -1,0 +1,17 @@
+data=TreeNode(val)
+        if not root:
+            return data
+        curr=root
+        if val<curr.val:
+            if not curr.left:
+                curr.left=data
+                return root
+            else:
+                self.insertIntoBST(curr.left,val)
+        else:
+            if not curr.right:
+                curr.right=data
+                return root
+            else:
+                self.insertIntoBST(curr.right,val)
+        return root
