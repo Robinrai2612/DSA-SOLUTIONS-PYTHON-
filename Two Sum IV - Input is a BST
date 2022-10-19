@@ -1,1 +1,9 @@
-
+def dfs(root, seen):
+            if root is None:
+                return False
+            sum= k- root.val
+            if sum in seen:
+                return True
+            seen.add(root.val)
+            return dfs(root.left, seen) or dfs(root.right, seen)
+        return dfs(root, set())
