@@ -42,3 +42,20 @@ public:
 };
 
 #PYTHON
+
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if not head:
+            return None
+        if not head.next:
+            return None
+
+        set_of_nodes = set()
+        while head.next:
+            if id(head) in set_of_nodes:
+                return head
+            set_of_nodes.add(id(head))
+            head = head.next
+
+        return None
+        
