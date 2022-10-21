@@ -1,3 +1,5 @@
+#JAVA
+
 public class Solution {
     public ListNode detectCycle(ListNode head) {
         ListNode slow=head,fast=head;
@@ -19,3 +21,24 @@ public class Solution {
         
     }
 }
+
+
+
+#CPP
+
+class Solution {
+public:
+    ListNode *detectCycle(ListNode *head) {
+        unordered_set<ListNode*> st;
+        
+        while(head){
+            if(st.find(head) != st.end())
+                return head;
+            st.insert(head);
+            head = head->next;
+        }
+        return  NULL;
+    }
+};
+
+#PYTHON
