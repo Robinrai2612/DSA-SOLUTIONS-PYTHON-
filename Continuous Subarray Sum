@@ -1,1 +1,13 @@
-
+class Solution:
+    def checkSubarraySum(self, nums: List[int], k: int) -> bool:
+        presum = defaultdict(int)
+        for i, a in enumerate(nums):
+            presum[i] = (presum[i-1] + a) % k 
+        presum[-1] = 0 
+        
+        indices = defaultdict(list)
+        for i, a in presum.items():
+            indices[a].append(i)
+        
+        return any(lst[-1] - lst[0] >= 2 for lst in indices.values())
+        
