@@ -1,1 +1,7 @@
-
+def strangeCounter(t):
+    # Write your code here
+    p = 3 
+    while t > p: 
+        t -= p
+        p *= 2
+    return p - t + 1
