@@ -1,1 +1,9 @@
-
+class Solution:
+    def distinctAverages(self, nums: List[int]) -> int:
+        nums.sort()
+        avg=0
+        ans=set()
+        while nums:
+            avg= (nums.pop(0)+nums.pop())/2
+            ans.add(avg)
+        return len(ans)
