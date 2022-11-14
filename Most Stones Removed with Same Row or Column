@@ -1,1 +1,55 @@
+class Solution:
+    def removeStones(self, stones: List[List[int]]) -> int:
+        # dfs
+        # storing index in visited
+        visited = set()
+		# storing index of all stones coming in same row(in rows) and same col(in cols)
+        cols = {}
+        rows = {}
+        for i in range(len(stones)):
+            stone = stones[i]
+            row, col = stone
+            if row in rows:
+                rows[row].append(i)
+            else:
+                rows[row] = [i]
+            
+            if col in cols:
+                cols[col].append(i)
+            else:
+                cols[col] = [i]
+         
+		 # almost similar to calculate no of islands.
+        answer = 0
+        for i in range(len(stones)):
+            if i in visited:
+                continue
+            
+            answer+=1
+            self.dfs(stones, rows, cols, i, visited)
+        
+        return len(stones)-answer
+    
+    def dfs(self, stones, rows, cols, currIdx, visited):
+        if currIdx in visited:
+            return
+        
+        visited.add(currIdx)
+        
+        currRow, currCol = stones[currIdx]
+        
+		# it is connected if in same row
+        for nextIdx in rows[currRow]:
+            if nextIdx==currIdx:
+                continue
+            self.dfs(stones, rows, cols, nextIdx, visited)
+        
+		# it is connected if in same col
+        for nextIdx in cols[currCol]:
+            if nextIdx==currIdx:
+                continue
+            self.dfs(stones, rows, cols, nextIdx, visited)
+        
+        return
 
+        
