@@ -1,1 +1,29 @@
+class Solution:
+    def countNodes(self, root: Optional[TreeNode]) -> int:
+        # Find the height of the left side
+        def leftHeight(node):
+            return 0 if not node else 1 + leftHeight(node.left)
 
+        # Find the height of the right side
+        def rightHeight(node):
+            return 0 if not node else 1 + rightHeight(node.right)
+
+        # Count the number of nodes in a tree starting from a given node
+        def count(node):
+
+            # If there is no node, return 0
+            if not node:
+                return 0
+
+            # Find height of both sides
+            left, right = leftHeight(node), rightHeight(node)
+
+            # If they are equal, we have a perfect binary tree
+            if left == right:
+                return 2 ** (left) - 1
+
+            # Else, count each subtree seperately
+            return 1 + count(node.left) + count(node.right)
+
+        return count(root)
+        
