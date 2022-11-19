@@ -1,1 +1,18 @@
-
+class Solution:
+    def canChoose(self, groups: List[List[int]], nums: List[int]) -> bool:
+        len_groups = len(groups)
+        idx_group = 0
+        len_group = len(groups[idx_group])
+        stack = []
+        for n in nums:
+            stack.append(n)
+            if (len(stack) >= len_group and
+                    stack[-len_group:] == groups[idx_group]):
+                stack = []
+                idx_group += 1
+                if idx_group < len_groups:
+                    len_group = len(groups[idx_group])
+                else:
+                    return True
+        return False
+        
