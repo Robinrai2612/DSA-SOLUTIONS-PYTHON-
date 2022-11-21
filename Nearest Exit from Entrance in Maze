@@ -1,1 +1,20 @@
+class Solution:
+    def nearestExit(self, maze: List[List[str]], entrance: List[int]) -> int:
+        m = len(maze)
+        n = len(maze[0])
+        startX, startY = entrance
+        DQ = deque([[startX, startY, 0]])
+        visited = {(startX, startY)}
 
+        while DQ:
+            X, Y, dist = DQ.popleft()
+            for x, y in [(0, 1), (1, 0), (0, -1), (-1, 0)]:
+                currX, currY = X + x, Y + y
+                if 0 <= currX < m and 0 <= currY < n and (currX, currY) not in visited and maze[currX][currY] == '.':
+                    if currX == 0 or currX == m - 1 or currY == 0 or currY == n - 1:
+                        return dist + 1
+                    DQ.append([currX, currY, dist + 1])
+                    visited.add((currX, currY))
+
+        return -1
+        
