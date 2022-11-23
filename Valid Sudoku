@@ -1,1 +1,29 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        for i in range(9):
+            # keep the track of each row, column, square
+            row = set() 
+            col = set()
+            sqr = set() 
+            row_c = 0
+            col_c = 0
+            sqr_c = 0
+            for j in range(9):
+                # check the row
+                if board[i][j] != ".":
+                    row.add(board[i][j])
+                    row_c += 1
+                # check the column
+                if board[j][i] != ".":
+                    col.add(board[j][i])
+                    col_c += 1
+                # check the square
+                if board[(i%3)*3 + (j//3)][(i//3)*3 + (j%3)] != ".":
+                    sqr.add(board[(i%3)*3 + (j//3)][(i//3)*3 + (j%3)])
+                    sqr_c += 1
+            
+            # if there is any duplicate number in a row, column or square, set length is less than the counted numbers. Then, the given board is not valid
+            if (sqr_c != len(sqr) or col_c != len(col) or row_c != len(row)):
+                return False
+        return True
 
