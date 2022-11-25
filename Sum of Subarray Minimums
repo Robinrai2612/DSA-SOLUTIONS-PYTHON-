@@ -1,1 +1,28 @@
+class Solution:
+    def sumSubarrayMins(self, arr: List[int]) -> int:
+        s1,s2,left,right=[],[],[0]*len(arr),[0]*len(arr)
+        for i in range(len(arr)):
+            curr = arr[i]
+            count=1
+            while s1 and s1[-1][0]>curr:
+                count+=s1[-1][1]
+                s1.pop()
+            left[i]=count
+            s1.append((arr[i],count))
 
+
+        for i in range(len(arr)-1,-1,-1):
+            curr,count=arr[i],1
+            while s2 and s2[-1][0]>=curr:
+                count+=s2[-1][1]
+                s2.pop()
+            right[i]=count
+            s2.append((arr[i],count))
+        
+        print(left,right)
+        
+        ans=0
+        for i in range(len(arr)):
+            ans+= (arr[i]*left[i]*right[i])
+        return ans%(10**9+7)
+        
