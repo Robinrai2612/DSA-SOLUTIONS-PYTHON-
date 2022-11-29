@@ -1,1 +1,14 @@
+class Solution:
+    def findWinners(self, matches: List[List[int]]) -> List[List[int]]:
+        
+        lost = Counter()                                  # [1] keeping track of all players
 
+        for w,l in matches:
+            lost[w] += 0                                  # [2] add player 
+            lost[l] += 1                                  # [3] increase loss count
+            
+        zero = [k for k,l in lost.items() if l == 0]      # [4] extract winners...
+        ones = [k for k,l in lost.items() if l == 1]      # [5] ...and losers
+
+        return [sorted(zero), sorted(ones)]
+        
