@@ -1,1 +1,38 @@
+class RandomizedSet():
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.dict = {}
+        self.list = []
 
+        
+    def insert(self, val):
+        """
+        Inserts a value to the set. Returns true if the set did not already contain the specified element.
+        """
+        if val in self.dict:
+            return False
+        self.dict[val] = len(self.list)
+        self.list.append(val)
+        return True
+        
+
+    def remove(self, val):
+        """
+        Removes a value from the set. Returns true if the set contained the specified element.
+        """
+        if val in self.dict:
+            last_element_val, last_element_idx = self.list[-1], self.dict[val]
+            self.list[last_element_idx], self.dict[last_element_val] = last_element_val, last_element_idx
+            # delete the last element
+            self.list.pop()
+            del self.dict[val]
+            return True
+        return False
+
+    def getRandom(self):
+        """
+        Get a random element from the set.
+        """
+        return choice(self.list)
