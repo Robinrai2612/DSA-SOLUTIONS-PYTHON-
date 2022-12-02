@@ -1,1 +1,4 @@
-
+class Solution:
+    def closeStrings(self, word1: str, word2: str) -> bool:
+        return sorted([word1.count(letter) for letter in "abcdefghijklmnopqrstuvwxyz"]) == sorted([word2.count(letter) for letter in "abcdefghijklmnopqrstuvwxyz"]) and set(word1) == set(word2)
+        
