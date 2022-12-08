@@ -1,1 +1,17 @@
+class Solution:
+    def leafSimilar(self, root1: TreeNode, root2: TreeNode) -> bool:
+        return self.get_leaves(root1) == self.get_leaves(root2)
 
+    def get_leaves(self, root: TreeNode) -> List[int]:
+        result = []
+        stack = [root]
+        while stack:
+            curr = stack.pop()
+            if not curr:
+                continue
+            if not curr.left and not curr.right:
+                result.append(curr.val)
+            else:
+                stack.append(curr.right)
+                stack.append(curr.left)  # don't forget to put left last to pop it first
+        return result
