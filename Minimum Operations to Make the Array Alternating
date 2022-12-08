@@ -1,1 +1,43 @@
+class Solution(object):
+    def minimumOperations(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        if len(nums) <= 1:
+            return 0
+        
+        
+        even_dic = collections.Counter([nums[i] for i in range(0, len(nums), 2)])
+        odd_dic = collections.Counter([nums[i] for i in range(1, len(nums), 2)]) # [num, how many times the num occur]
 
+        n = len(nums)
+        
+        even_cnter_dic = collections.defaultdict(list) # [occurence of a num, [num1, num2,... with the same occurence]]
+        odd_cnter_dic = collections.defaultdict(list)
+        for key, cnt in even_dic.items():
+            even_cnter_dic[cnt].append(key)
+        for key, cnt in odd_dic.items():
+            odd_cnter_dic[cnt].append(key)
+        
+        even_cnt_max = max(even_cnter_dic.keys())
+        odd_cnt_max = max(odd_cnter_dic.keys())
+
+        if len(even_cnter_dic[even_cnt_max]) >= 2 or len(odd_cnter_dic[odd_cnt_max]) >= 2: # we can find at least one pair of different numbers with the max count in odd/even group
+            return n - even_cnt_max - odd_cnt_max
+        elif even_cnter_dic[even_cnt_max][0] != odd_cnter_dic[odd_cnt_max][0]: # only one pair of numbers with the max count in the odd/even group but they are different
+            return n - even_cnt_max - odd_cnt_max
+        else:
+            if len(set(even_cnter_dic.keys())) == 1 and len(set(odd_cnter_dic.keys())) == 1: # the odd/even group consists of the same number
+                return n // 2
+            elif len(set(even_cnter_dic.keys())) == 1: # the even group consists of one identical number while the odd group consists of multiple ones
+                odd_cnt_max2 = max(key for key in odd_cnter_dic.keys() if key != odd_cnt_max)
+                return n - even_cnt_max - odd_cnt_max2
+            elif len(set(odd_cnter_dic.keys())) == 1: # the odd group consists of one identical number while the even group consists of multiple ones
+                even_cnt_max2 = max(key for key in even_cnter_dic.keys() if key != even_cnt_max)
+                return n - even_cnt_max2 - odd_cnt_max
+            else: # the odd/even group consists of multiple numbers
+                odd_cnt_max2 = max(key for key in odd_cnter_dic.keys() if key != odd_cnt_max)
+                even_cnt_max2 = max(key for key in even_cnter_dic.keys() if key != even_cnt_max)
+                return min(n - even_cnt_max - odd_cnt_max2, n - even_cnt_max2 - odd_cnt_max)
+            
