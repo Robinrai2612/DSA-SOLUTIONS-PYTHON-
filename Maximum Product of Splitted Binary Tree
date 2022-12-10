@@ -13,8 +13,7 @@ class Solution:
                 return result    
         rootSum = getSum(root)
         idealSplit = rootSum/2
-        closestToIdeal = 0
-        
+        closestToIdeal = 0     
         for possibleSum in subtreeSums:
             if math.fabs(possibleSum - idealSplit) < math.fabs(closestToIdeal - idealSplit):
                 closestToIdeal = possibleSum        
