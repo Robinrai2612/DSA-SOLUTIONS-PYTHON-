@@ -10,8 +10,7 @@ class Solution:
             else:
                 result = getSum(node.left) + getSum(node.right) + node.val
                 subtreeSums.add(result)
-                return result
-            
+                return result    
         rootSum = getSum(root)
         idealSplit = rootSum/2
         closestToIdeal = 0
