@@ -1,1 +1,5 @@
-
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        s = "".join(re.findall('^[\+|\-]?\d+', s.lstrip()))
+        return 0 if not s else min(2**31-1, max(-2**31, int(s)))
+        
