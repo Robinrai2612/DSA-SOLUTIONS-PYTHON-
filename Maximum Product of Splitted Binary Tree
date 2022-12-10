@@ -1,7 +1,6 @@
 class Solution:
     def maxProduct(self, root: Optional[TreeNode]) -> int:
         subtreeSums = set()
-        
         def getSum(node):
             if not node:
                 return 0
