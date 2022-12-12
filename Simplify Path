@@ -12,7 +12,5 @@ class Solution:
                 if st:
                     st.pop(-1)
             else:
-                st.append(item)
-                
-        
+                st.append(item)    
         return "/" + "/".join(st)
