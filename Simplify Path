@@ -1,1 +1,18 @@
-
+class Solution:
+    def simplifyPath(self, path: str) -> str:
+        ls = path.split("/")
+        i, ln = 0, len(path)
+        if ln == 0:
+            return ""
+        st = []
+        for item in ls:
+            if item == "" or item == ".":
+                continue
+            if item == "..":
+                if st:
+                    st.pop(-1)
+            else:
+                st.append(item)
+                
+        
+        return "/" + "/".join(st)
