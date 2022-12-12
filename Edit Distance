@@ -1,1 +1,16 @@
+class Solution:
+    def minDistance(self, word1: str, word2: str) -> int:
+        m,n,d = len(word1),len(word2),{}
+        def mds(word1, word2, i, j):
+            if i*j==0: return i+j
+            if (i,j) in d: return d[(i,j)]
+            val = 0
+            if word1[i-1]==word2[j-1]:
+                val = mds(word1, word2, i-1, j-1)
+            else:
+                val = 1+min(mds(word1,word2,i,j-1),mds(word1,word2,i-1,j-1),mds(word1,word2,i-1,j))
+            d[(i,j)]=val
+            return val
+        return mds(word1,word2,m,n)
+
 
