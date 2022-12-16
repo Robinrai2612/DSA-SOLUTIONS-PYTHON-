@@ -1,1 +1,47 @@
+class Solution:
+    def spiralOrder(self, matrix: List[List[int]]) -> List[int]:
+        def recursive(self, matrix):
+            if not matrix:
+                return []
 
+        def is_valid(row, col):
+                return (
+                    0 <= row < len(matrix)
+                    and 0 <= col < len(matrix[0])
+                )
+
+        def visit(row, col):
+                if (row, col) in visited:
+                    return
+                nonlocal last_move
+
+                result.append(matrix[row][col])
+                visited.add((row, col))
+
+                up = row-1, col
+                right = row, col+1
+                down = row+1, col
+                left = row, col-1
+
+                if is_valid(*up) and up not in visited and not last_move == "left":
+                    last_move = "up"
+                    visit(*up)
+                elif is_valid(*right) and right not in visited:
+                    last_move = "right"
+                    visit(*right)
+                elif is_valid(*down) and down not in visited:
+                    last_move = "down"
+                    visit(*down)
+                elif is_valid(*left) and left not in visited:
+                    last_move = "left"
+                    visit(*left)
+                if is_valid(*up) and up not in visited:
+                    last_move = "up"
+                    visit(*up)
+
+        visited = set()
+        result = []
+        last_move = None
+        visit(0, 0)
+        return result
+                
