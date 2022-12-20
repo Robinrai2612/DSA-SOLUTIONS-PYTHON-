@@ -1,1 +1,13 @@
-
+class Solution:
+    def canVisitAllRooms(self, rooms: List[List[int]]) -> bool:
+        visited, stack = set(), []
+        visited.add(0)
+        stack.append(0)
+        while(stack):
+            keys = rooms[stack.pop()]
+            for key in keys:
+                if key not in visited:
+                    visited.add(key)
+                    stack.append(key)
+                    if len(visited) == len(rooms):return True
+        return len(visited) == len(rooms)
