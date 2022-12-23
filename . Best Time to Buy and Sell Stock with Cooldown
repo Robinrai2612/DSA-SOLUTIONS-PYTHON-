@@ -1,1 +1,16 @@
-
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices:
+            return 0
+        
+        prev_rest = prev_sell = 0
+        prev_buy = -prices[0]
+        
+        for p in prices[1:]:
+            buy = max(prev_rest - p, prev_buy)
+            sell = max(prev_buy + p, prev_sell)
+            prev_buy = buy
+            prev_rest = prev_sell
+            prev_sell = sell
+            
+        return max([prev_rest, prev_sell])
