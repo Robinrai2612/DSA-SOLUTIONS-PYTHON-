@@ -1,9 +1,7 @@
 class Solution:
 	def allPathsSourceTarget(self, graph: List[List[int]]) -> List[List[int]]:
-
 		def helper(start):
 			alist = []
-
 			for nextVertex in graph[start]:
 				if nextVertex == len(graph)-1:
 					alist.append([start, len(graph)-1])
@@ -11,7 +9,5 @@ class Solution:
 					results = helper(nextVertex)
 					for result in results:
 						alist.append([start]+result)
-
 			return alist
-
 		return helper(0)
