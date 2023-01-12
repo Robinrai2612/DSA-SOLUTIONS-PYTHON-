@@ -1,6 +1,4 @@
 import collections
-
-
 class Solution:
     def countSubTrees(self, n: int, edges: list[list[int]], labels: str) -> list[int]:
         graph = [[] for _ in range(n)]
