@@ -1,1 +1,34 @@
+class Solution:
+    def minimumTime(self, time: List[int], totalTrips: int) -> int:
 
+        def valid(num):
+            count = 0
+            for x in time:count += num//x
+            
+            return count >= totalTrips
+
+        left = 1
+        right = (totalTrips * max(time))+1
+        last_m = float("inf")
+        res = float("inf")
+        while left < right:
+            m = (left+right)//2
+            
+            if m == last_m:break
+            last_m = m
+            
+            if valid(m):
+                res = min(res,m)
+                right = m
+            else:
+                left = m
+
+        temp = res
+        while True:
+            temp -= 1
+            if valid(temp):
+                res = temp
+            else:
+                break
+        
+        return res
