@@ -1,9 +1,9 @@
-AT = list(zip(*A))
+const = list(zip(*A))
     n = 0
     for i in range(H):
         for j in range(1, W):
             n += abs(A[i][j] - A[i][j-1])
     for i in range(W):
         for j in range(1, H):
-            n += abs(AT[i][j] - AT[i][j-1])
+            n += abs(const[i][j] - const[i][j-1])
     return 2 * H * W + sum(A[0]) + sum(A[H-1]) + sum(AT[0]) + sum(AT[W-1]) + n
