@@ -7,7 +7,7 @@ def removeDuplicates(head):
     current = head
     
     # Traverse the linked list
-    while current is not None:
+    while current:
         # Compare the current node's data with the next node's data
         if current.next is not None and current.data == current.next.data:
             # Skip the next node (remove the duplicate)
